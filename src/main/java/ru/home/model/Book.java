@@ -9,6 +9,11 @@ public class Book {
 
     }
 
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
     public Book(String isbn, String title, String author) {
         this.isbn = isbn;
         this.title = title;

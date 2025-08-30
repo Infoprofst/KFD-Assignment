@@ -41,7 +41,7 @@ public class BookRepo {
 
     public List<BookDataResponseDto> getAllBooks() {
         List<BookDataResponseDto> libraryBooks = new ArrayList<>();
-        String queryAllBooks = "SELECT author,name FROM %s".formatted(BOOK_TABLE);
+        String queryAllBooks = "SELECT author,title FROM %s".formatted(BOOK_TABLE);
         try (PreparedStatement statement = connection.prepareStatement(queryAllBooks)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -55,11 +55,10 @@ public class BookRepo {
         return libraryBooks;
     }
 
-    public Set<BookAuthorResponseDto> listBooksByAuthor(String author) {
+    public Set<BookAuthorResponseDto> sortBooksByAuthor() {
         Set<BookAuthorResponseDto> authorsList = new HashSet<>();
-        String queryBooksByAuthor = "SELECT author FROM %s WHERE author = ?".formatted(BOOK_TABLE);
+        String queryBooksByAuthor = "SELECT author FROM %s".formatted(BOOK_TABLE);
         try (PreparedStatement statement = connection.prepareStatement(queryBooksByAuthor)) {
-            statement.setString(FIRST_INDEX, author);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 authorsList.add(new BookAuthorResponseDto(resultSet.getString("author")));
@@ -67,7 +66,7 @@ public class BookRepo {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return authorsList;
     }
 
     public boolean removeBook(String isbn) {

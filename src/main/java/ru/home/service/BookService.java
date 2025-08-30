@@ -12,7 +12,7 @@ public interface BookService {
 
     List<BookDataResponseDto> getAllBooks();
 
-    Set<BookAuthorResponseDto> listBooksByAuthor(String author);
+    Set<BookAuthorResponseDto> sortBooksByAuthor();
 
     boolean removeBook(String isbn);
 }

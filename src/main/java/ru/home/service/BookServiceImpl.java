@@ -26,12 +26,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Set<BookAuthorResponseDto> listBooksByAuthor(String author) {
-        return library.listBooksByAuthor(author);
+    public Set<BookAuthorResponseDto> sortBooksByAuthor() {
+        return library.sortBooksByAuthor();
     }
 
     @Override
     public boolean removeBook(String isbn) {
-        return removeBook(isbn);
+        return library.removeBook(isbn);
     }
 }
